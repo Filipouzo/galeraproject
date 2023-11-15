@@ -22,14 +22,16 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 /** Routers */
-/* const formation_router = require('./routers/r_formation') */
+const formation_router = require('./Routers/Formation')
 
 /** Routage principal */
-/* app.get('/', (req, res) => res.send(`I'm online good job !`))
+app.get('/', (req, res) => res.send(`Bien en ligne ! Good Job !`))
 
 app.use('/formations', formation_router)
 
-app.all('*', (req, res) => res.status(501).send('What the hell are you doing')) */
+
+/* Si pas de route trouvée */
+app.all('*', (req, res) => res.status(501).send("URL inconnue !"))
 
 
  
