@@ -5,9 +5,9 @@ const Formation = DB.Formation
 /* Récupération de toutes les formations */
 exports.getAllFormations = (req, res) => {
     Formation.findAll()
-        .then(formations => res.json({data: formations}))
+        .then(formations => res.json({ data: formations }))
         //! Attention message d'erreur à supprimer en prod
-        .catch(e => res.status(500).json({message: 'BDD Error', error:e}))
+        .catch(e => res.status(500).json({ message: 'BDD Error', error: e }))
 }
 
 
@@ -22,7 +22,7 @@ exports.getFormation = async (req, res) => {
 
     try {
         /* Récupération de formation avec l'id */
-        let formation = await Formation.findOne({ where: { id: formationId }})
+        let formation = await Formation.findOne({ where: { id: formationId } })
 
         /* La formation existe ? */
         if (formation === null) {
@@ -41,24 +41,24 @@ exports.getFormation = async (req, res) => {
 
 /* ajout d'une formation */
 exports.addFormation = async (req, res) => {
-    const { nom, debut, fin } = req.body
+    const { name, start, end } = req.body
 
     /* Validation des données reçues */
-    if (!nom || !debut || !fin) {
+    if (!name || !start || !end) {
         return res.status(400).json({ message: 'Missing Data' })
     }
 
-    try{
+    try {
         /* La formation existe ? */
-        let formation = await Formation.findOne({ where: { nom: nom }, raw: true })
+        let formation = await Formation.findOne({ where: { name: name }, raw: true })
         if (formation !== null) {
-            return res.status(409).json({ message: `La formation ${nom} existe déjà !` })
+            return res.status(409).json({ message: `La formation ${name} existe déjà !` })
         }
 
         /* Enregistrement de la formation */
         formation = await Formation.create(req.body)
-        return res.json({ message: `La formation ${nom} a bien été ajotée ! `, data: formation })
-    }catch(err){
+        return res.json({ message: `La formation ${name} a bien été ajotée ! `, data: formation })
+    } catch (err) {
         //! Attention message d'erreur à supprimer en prod
         return res.status(500).json({ message: 'BDD Error', error: err })
     }
