@@ -1,7 +1,7 @@
-/** Import module */
+/* Import module */
 const { DataTypes } = require('sequelize')
 
-/** Note */
+/* Note */
 
 module.exports = (sequelize) => {
     const Note = sequelize.define('Note', {

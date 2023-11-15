@@ -1,8 +1,8 @@
-/** Import module */
+/* Import module */
 const { DataTypes } = require('sequelize')
 
 
-/** Formation */
+/* Formation */
 
 module.exports = (sequelize) => {
     const Formation = sequelize.define('Formation', {

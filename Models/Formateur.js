@@ -1,7 +1,7 @@
-/** Import module */
+/* Import module */
 const { DataTypes } = require('sequelize')
 
-/** Formateur */
+/* Formateur */
 
 module.exports = (sequelize) => {
     const Formateur = sequelize.define('Formateur', {

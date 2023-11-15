@@ -1,7 +1,7 @@
-/** Import module */
+/* Import module */
 const { DataTypes } = require('sequelize')
 
-/** Eleve */
+/* Eleve */
 module.exports = (sequelize) => {
     const Eleve = sequelize.define('Eleve', {
         id: {
