@@ -14,4 +14,6 @@ router.get('/:id', ctrlEleve.getEleve)
 
 router.put('', ctrlEleve.addEleve)
 
+router.delete('/:id', ctrlEleve.deleteEleve)
+
 module.exports=router
