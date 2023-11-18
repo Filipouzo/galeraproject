@@ -22,7 +22,7 @@ exports.getNote = async (req, res) => {
 
     try {
         /* Récupération d'une note avec l'id */
-        let note = await NotefindOne({ where: { id: noteId } })
+        let note = await Note.findOne({ where: { id: noteId } })
 
         /* La note existe ? */
         if (note === null) {
