@@ -20,4 +20,6 @@ router.get('/:id', ctrlFormation.getFormation)
 
 router.put('', ctrlFormation.addFormation)
 
+router.delete('/:id', ctrlFormation.deleteFormation)
+
 module.exports=router
