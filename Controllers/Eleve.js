@@ -63,3 +63,35 @@ exports.addEleve = async (req, res) => {
         return res.status(500).json({ message: 'BDD Error', error: err })
     }
 }
+
+/* Suppression d'un élève */
+exports.deleteEleve = async (req, res) => {
+    let eleveId = parseInt(req.params.id)
+
+    /* l'id est-il présent ? */
+    if (!eleveId) {
+        return res.json(400).json({ message: 'Missing Parameter' })
+    }
+
+    try {
+        /* Récupération de l'élève' avec l'id */
+        let eleve = await Eleve.findOne({ where: { id: eleveId } })
+
+        /* L'élève existe ? */
+        if (eleve === null) {
+            return res.status(404).json({ message: "Cet élève n'existe pas !" })
+        }
+
+
+        /* suppression de l'élève */
+        eleve = await Eleve.destroy({
+            where: {
+                id: eleveId,
+            },
+        });
+        return res.json({ message: `L'élève' a bien été supprimée ! `, data: eleve })
+    } catch (err) {
+        //! Attention message d'erreur à supprimer en prod
+        return res.status(500).json({ message: 'BDD Error', error: err })
+    }
+}
