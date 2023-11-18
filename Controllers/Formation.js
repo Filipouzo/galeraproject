@@ -57,7 +57,39 @@ exports.addFormation = async (req, res) => {
 
         /* Enregistrement de la formation */
         formation = await Formation.create(req.body)
-        return res.json({ message: `La formation ${name} a bien été ajotée ! `, data: formation })
+        return res.json({ message: `La formation ${name} a bien été ajoutée ! `, data: formation })
+    } catch (err) {
+        //! Attention message d'erreur à supprimer en prod
+        return res.status(500).json({ message: 'BDD Error', error: err })
+    }
+}
+
+/* Suppression d'une formation */
+exports.deleteFormation = async (req, res) => {
+    let formationId = parseInt(req.params.id)
+
+    /* l'id est-il présent ? */
+    if (!formationId) {
+        return res.json(400).json({ message: 'Missing Parameter' })
+    }
+
+    try {
+        /* Récupération de formation avec l'id */
+        let formation = await Formation.findOne({ where: { id: formationId } })
+
+        /* La formation existe ? */
+        if (formation === null) {
+            return res.status(404).json({ message: "Cette formation n'existe pas !" })
+        }
+
+
+        /* suppression de la formation */
+        formation = await Formation.destroy({
+            where: {
+              id: formationId,
+            },
+          });
+        return res.json({ message: `La formation a bien été supprimée ! `, data: formation })
     } catch (err) {
         //! Attention message d'erreur à supprimer en prod
         return res.status(500).json({ message: 'BDD Error', error: err })
