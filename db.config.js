@@ -25,9 +25,20 @@ db.Eleve = require('./Models/Eleve')(sequelize)
 db.Module = require('./Models/Module')(sequelize)
 db.Note = require('./Models/Note')(sequelize)
 
-
 db.Formation.hasMany(db.Eleve, {foreignKey: 'id_formation'})
 db.Eleve.belongsTo(db.Formation, {foreignKey: 'id_formation'})
+
+db.Formation.hasMany(db.Module, {foreignKey: 'id_formation'})
+db.Module.belongsTo(db.Formation, {foreignKey: 'id_formation'})
+
+db.Eleve.hasMany(db.Note, {foreignKey: 'id_eleve'})
+db.Note.belongsTo(db.Eleve, {foreignKey: 'id_eleve'})
+
+db.Formateur.hasMany(db.Note, {foreignKey: 'id_formateur'})
+db.Note.belongsTo(db.Formateur, {foreignKey: 'id_formateur'})
+
+db.Formateur.hasMany(db.Module, {foreignKey: 'id_formateur'})
+db.Module.belongsTo(db.Formateur, {foreignKey: 'id_formateur'})
 
 
 /* Synchronisation des modèles */
