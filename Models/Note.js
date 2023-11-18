@@ -13,17 +13,17 @@ module.exports = (sequelize) => {
             type: DataTypes.INTEGER(10),
             allowNull: false
         },
-        value:{
+        value: {
             type: DataTypes.INTEGER(2),
             defaultValue: 0,
             allowNull: false
         },
-        comment:{
+        comment: {
             type: DataTypes.STRING(250),
             defaultValue: '',
             allowNull: false
         },
-        module_id: {
+        id_module: {
             type: DataTypes.INTEGER(10),
             allowNull: false
         }

@@ -23,11 +23,19 @@ app.use(express.urlencoded({ extended: true }))
 
 /** Routers */
 const formation_router = require('./Routers/Formation')
+const eleve_router = require('./Routers/Eleve')
+const formateur_router = require('./Routers/Formateur')
+const module_router = require('./Routers/Module')
+const note_router = require('./Routers/Note')
 
 /** Routage principal */
 app.get('/', (req, res) => res.send(`Bien en ligne ! Good Job !`))
 
 app.use('/formations', formation_router)
+app.use('/eleves', eleve_router)
+app.use('/notes', note_router)
+app.use('/formateurs', formateur_router)
+app.use('/modules', module_router)
 
 
 /* Si pas de route trouvée */
