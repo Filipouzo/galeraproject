@@ -2,7 +2,7 @@
 const DB = require('../db.config')
 const Eleve = DB.Eleve
 
-/* Récupération de toutes les élèvess */
+/* Récupération de toutes les élèves */
 exports.getAllEleves = (req, res) => {
     Eleve.findAll()
         .then(eleves => res.json({ data: eleves }))
@@ -24,7 +24,7 @@ exports.getEleve = async (req, res) => {
         /* Récupération d'un élève avec l'id */
         let eleve = await Eleve.findOne({ where: { id: eleveid } })
 
-        /* L'élève' existe ? */
+        /* L'élève existe ? */
         if (eleve === null) {
             return res.status(404).json({ message: "Cet élève n'existe pas !" })
         }
@@ -49,13 +49,13 @@ exports.addEleve = async (req, res) => {
     }
 
     try {
-        /* L'élève' existe ? */
+        /* L'élève existe ? */
         let eleve = await Eleve.findOne({ where: { email: email }, raw: true })
         if (eleve !== null) {
             return res.status(409).json({ message: `l'email : ' ${email} existe déjà !` })
         }
 
-        /* Enregistrement de l'élève' */
+        /* Enregistrement de l'élève */
         eleve = await Eleve.create(req.body)
         return res.json({ message: `L'élève ${lastname} a bien été ajouté ! `, data: eleve })
     } catch (err) {
