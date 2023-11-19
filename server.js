@@ -27,6 +27,7 @@ const eleve_router = require('./Routers/Eleve')
 const formateur_router = require('./Routers/Formateur')
 const module_router = require('./Routers/Module')
 const note_router = require('./Routers/Note')
+const admin_router = require('./Routers/Admin')
 
 /** Routage principal */
 app.get('/', (req, res) => res.send(`Bien en ligne ! Good Job !`))
@@ -36,14 +37,15 @@ app.use('/eleves', eleve_router)
 app.use('/notes', note_router)
 app.use('/formateurs', formateur_router)
 app.use('/modules', module_router)
+app.use('/admin', admin_router)
+app.get('/admin', (req, res) => res.send(`Vous êtes logué sur la page Admin`))
+
 
 
 /* Si pas de route trouvée */
 app.all('*', (req, res) => res.status(501).send("URL inconnue !"))
 
 
- 
-/** Démarrage de l'API */
 
 
 /** Test de connexion à la BDD AWS */
